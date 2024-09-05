@@ -1,18 +1,16 @@
 package edu.pitt.cs;
 
-import java.util.TreeSet;
 //TODO: Import libraries as needed
-import java.util.Collections;
 import java.util.NoSuchElementException;
+import java.util.TreeSet;
+import java.lang.Integer;
 
 public class SortedCollection {
 	// TODO: Add member variables or methods as needed
 
-	private TreeSet<Integer> collection;
+	private TreeSet<Integer> collection = new TreeSet<>();
 
-	SortedCollection(){
-	collection = new TreeSet<>();
-	}
+	
 
 	/**
 	 * Adds the number n to the collection.
@@ -23,8 +21,6 @@ public class SortedCollection {
 	public boolean add(int n) {
 		// TODO: Implement
 		collection.add(n);
-
-		//Collections.sort(collection);
 		return true;
 	}
 
@@ -37,12 +33,9 @@ public class SortedCollection {
 	public int remove() throws NoSuchElementException {
 		// TODO: Implement
 
-		if(collection.isEmpty()){
-			throw new NoSuchElementException("Collection is empty");
-		}
-
-		//return collection.remove(0);
-		return collection.pollFirst();
+		int num = collection.first();
+		collection.remove(num);
+		return num;
 	}
 
 	/**
@@ -71,25 +64,17 @@ public class SortedCollection {
 		// TODO: add numbers in commandline arguments to collection using the add(int) method.
 		// If any commandline argument is not a number, call showUsage() and return.
 		
-		/* 
-		try {
-			for(String arg : args){
-				int num = Integer.parseInt(arg);
+		
+		for (int i = 0; i < args.length; i++) {
+			try {
+				int num = Integer.parseInt(args[i]);
 				collection.add(num);
+			} catch (Exception e) {
+				showUsage();
+				return;
 			}
-		} catch (NoSuchElementException e) {
-			// TODO: handle exception
-			showUsage();
-			return;
 		}
-		*/
 
-		
-		
-
-		
-		
-		
 
 		
 		System.out.print("sorted: ");
@@ -99,4 +84,6 @@ public class SortedCollection {
 		}
 		System.out.println();
 	}
+
+	
 }
